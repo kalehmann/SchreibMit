@@ -13,7 +13,7 @@ sie zur Kontaktaufnahme zu der Einrichtung animieren.
   * E-Mail-Adresse zur späteren Kontaktaufnahme
   * Postleitzahl zur Bestimmung der am nähsten liegenden Pflegeeinrichtung
   * Optional das Alter
- - Erhalt einer E-Mail mit Kontaktinformationen der am nähsten liegenden Pflegeeinrichtung
+ - Erhalt einer E-Mail mit Kontaktinformationen der am nächsten liegenden Pflegeeinrichtung
  
  #### Aus Sicht eines Administrators
  
@@ -55,6 +55,8 @@ sie zur Kontaktaufnahme zu der Einrichtung animieren.
 * postal_code (string)
 * age (int)
 * registration_date (datetime)
+* pflegeheim_id (int)
+* pflegeheim_contact_date (datetime)
 
 ### Design
 
