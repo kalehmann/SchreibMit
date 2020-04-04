@@ -56,7 +56,6 @@ sie zur Kontaktaufnahme zu der Einrichtung animieren.
 * age (int)
 * registration_date (datetime)
 * pflegeheim_id (int)
-* pflegeheim_contact_date (datetime)
 
 ### Design
 

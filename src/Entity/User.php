@@ -58,11 +58,6 @@ class User
      */
     protected $pflegeheim;
 
-    /**
-     * @ORM\Column(name="pflegeheim_contact_date", type="datetime_immutable", nullable=true)
-     * @var null|\DateTime
-     */
-    protected $pflegeheimContactDate;
 
     /**
      * @return int
@@ -174,21 +169,5 @@ class User
     public function setPflegeheim(?Pflegeheim $pflegeheim): void
     {
         $this->pflegeheim = $pflegeheim;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
-    public function getPflegeheimContactDate(): ?\DateTime
-    {
-        return $this->pflegeheimContactDate;
-    }
-
-    /**
-     * @param \DateTime|null $pflegeheimContactDate
-     */
-    public function setPflegeheimContactDate(?\DateTime $pflegeheimContactDate): void
-    {
-        $this->pflegeheimContactDate = $pflegeheimContactDate;
     }
 }
