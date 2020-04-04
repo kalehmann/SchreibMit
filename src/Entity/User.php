@@ -41,12 +41,12 @@ class User
 
     /**
      * @var int|null
-     * @ORM\Column(name="age", type="integer", nullable=false)
+     * @ORM\Column(name="age", type="integer", nullable=true)
      */
     protected $age;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      * @ORM\Column(name="registration_date", type="datetime_immutable", nullable=false)
      */
     protected $registrationDate;
@@ -108,17 +108,17 @@ class User
     }
 
     /**
-     * @return string
+     * @return PostalCode
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): PostalCode
     {
         return $this->postalCode;
     }
 
     /**
-     * @param string $postalCode
+     * @param PostalCode $postalCode
      */
-    public function setPostalCode(string $postalCode): void
+    public function setPostalCode(PostalCode $postalCode): void
     {
         $this->postalCode = $postalCode;
     }
@@ -140,17 +140,17 @@ class User
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getRegistrationDate(): \DateTime
+    public function getRegistrationDate(): \DateTimeImmutable
     {
         return $this->registrationDate;
     }
 
     /**
-     * @param \DateTime $registrationDate
+     * @param \DateTimeImmutable $registrationDate
      */
-    public function setRegistrationDate(\DateTime $registrationDate): void
+    public function setRegistrationDate(\DateTimeImmutable $registrationDate): void
     {
         $this->registrationDate = $registrationDate;
     }
@@ -169,5 +169,10 @@ class User
     public function setPflegeheim(?Pflegeheim $pflegeheim): void
     {
         $this->pflegeheim = $pflegeheim;
+    }
+
+    public function __toString()
+    {
+        return $this->email;
     }
 }

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Pflegeheim
  * @package App\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\PflegeHeimRepository")
  */
 class Pflegeheim
 {
@@ -143,7 +143,7 @@ class Pflegeheim
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity()
     {
         return $this->city;
     }
@@ -159,7 +159,7 @@ class Pflegeheim
     /**
      * @return string
      */
-    public function getPostalCode(): string
+    public function getPostalCode()
     {
         return $this->postalCode;
     }
@@ -175,7 +175,7 @@ class Pflegeheim
     /**
      * @return string
      */
-    public function getStreet(): string
+    public function getStreet()
     {
         return $this->street;
     }
@@ -191,7 +191,7 @@ class Pflegeheim
     /**
      * @return string
      */
-    public function getContactPerson(): string
+    public function getContactPerson()
     {
         return $this->contactPerson;
     }
@@ -207,7 +207,7 @@ class Pflegeheim
     /**
      * @return int
      */
-    public function getMaxContacts(): int
+    public function getMaxContacts()
     {
         return $this->maxContacts;
     }
@@ -234,5 +234,10 @@ class Pflegeheim
     public function setUsers($users): void
     {
         $this->users = $users;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

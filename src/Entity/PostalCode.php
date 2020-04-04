@@ -102,4 +102,9 @@ class PostalCode
     {
         $this->users = $users;
     }
+
+    public function __toString()
+    {
+        return $this->postalCode;
+    }
 }
