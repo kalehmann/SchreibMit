@@ -53,11 +53,10 @@ class User
 
     /**
      * @var null|Pflegeheim
-     * @ORM\ManyToOne(targetEntity="Pflegeheim")
+     * @ORM\ManyToOne(targetEntity="Pflegeheim", inversedBy="users")
      * @ORM\JoinColumn(name="pflegeheim_id", referencedColumnName="id", nullable=true)
      */
     protected $pflegeheim;
-
 
     /**
      * @return int

@@ -1,5 +1,16 @@
 easy_admin:
     entities:
         # List the entity class name you want to manage
-        - DrkDD\Pflegefinder\Entity\Pflegeheim
-        - DrkDD\Pflegefinder\Entity\User
+        Admin:
+            class: DrkDD\Pflegefinder\Entity\Admin
+            form:
+                fields:
+                    - { property: 'plainPassword' , type: 'password'}
+            new:
+                fields:
+                    - 'username'
+                    - { property: 'plainPassword' , type: 'password', type_options: {required: true}}
+        Pflegeheim:
+            class: DrkDD\Pflegefinder\Entity\Pflegeheim
+        User:
+            class: DrkDD\Pflegefinder\Entity\User
