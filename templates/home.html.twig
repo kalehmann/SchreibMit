@@ -2,4 +2,11 @@
 
 {% block body %}
     {{ form(userForm) }}
+
+    <footer>
+        <ul>
+            <li><a href="{{ path('legal_impressum') }}">Impressum</a></li>
+            <li><a href="{{ path('legal_gdpr') }}">Datenschutz</a></li>
+        </ul>
+    </footer>
 {% endblock %}
