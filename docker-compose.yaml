@@ -10,10 +10,17 @@ services:
       - 'MYSQL_PASSWORD=aiZie9eereek2que'
     ports:
       - '13306:3306'
+  mail:
+    image: 'mailhog/mailhog'
+    environment:
+      - 'MH_HOSTNAME=mail'
+    ports:
+      - '81:8025'
   php:
     build: '.'
     depends_on:
       - 'db'
+      - 'mail'
     ports:
       - '80:80'
     volumes:

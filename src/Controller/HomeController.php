@@ -18,11 +18,19 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class HomeController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
     protected $entityManager;
+    /**
+     * @var \Swift_Mailer
+     */
+    protected $mailer;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer)
     {
         $this->entityManager = $em;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -50,6 +58,8 @@ class HomeController extends AbstractController
                 $user->setRegistrationDate(new \DateTimeImmutable());
                 $user->setPflegeheim($pflegeheim);
 
+                $this->sendContactMessage($user);
+
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
             }
@@ -61,6 +71,31 @@ class HomeController extends AbstractController
                 'userForm' => $userForm->createView(),
             ]
         );
+    }
+
+    protected function sendContactMessage(User $user): void
+    {
+        $message = (new \Swift_Message('JRK Pflegefinder'))
+            ->setFrom('mail@jrksachsen.de')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->renderView(
+                // templates/emails/registration.html.twig
+                    'email/contact.html.twig',
+                    ['user' => $user]
+                ),
+                'text/html'
+            )
+        ->addPart(
+            $this->renderView(
+            // templates/emails/registration.html.twig
+                'email/contact.txt.twig',
+                ['user' => $user]
+            ),
+            'text/plain'
+        );
+
+        $this->mailer->send($message);
     }
 
     protected function mapUserDocumentToUser(UserDocument $document): User
