@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Entity;
+namespace DrkDD\Pflegefinder\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class User
- * @package App\Entity
+ * @package DrkDD\Pflegefinder\Entity
  * @ORM\Entity()
  */
 class User

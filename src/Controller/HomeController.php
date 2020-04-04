@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace DrkDD\Pflegefinder\Controller;
 
-use App\Document\UserDocument;
-use App\Entity\Pflegeheim;
-use App\Entity\PostalCode;
-use App\Entity\User;
-use App\Form\Type\UserType;
-use App\Repository\PflegeHeimRepository;
+use DrkDD\Pflegefinder\Document\UserDocument;
+use DrkDD\Pflegefinder\Entity\Pflegeheim;
+use DrkDD\Pflegefinder\Entity\PostalCode;
+use DrkDD\Pflegefinder\Entity\User;
+use DrkDD\Pflegefinder\Form\Type\UserType;
+use DrkDD\Pflegefinder\Repository\PflegeHeimRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

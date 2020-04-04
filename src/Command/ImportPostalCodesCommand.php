@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Command;
+namespace DrkDD\Pflegefinder\Command;
 
 
-use App\Entity\PostalCode;
+use DrkDD\Pflegefinder\Entity\PostalCode;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class ImportPostalCodesCommand
- * @package App\Command
+ * @package DrkDD\Pflegefinder\Command
  */
 class ImportPostalCodesCommand extends Command
 {

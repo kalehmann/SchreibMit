@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repository;
+namespace DrkDD\Pflegefinder\Repository;
 
-use App\Entity\Pflegeheim;
-use App\Entity\PostalCode;
+use DrkDD\Pflegefinder\Entity\Pflegeheim;
+use DrkDD\Pflegefinder\Entity\PostalCode;
 use Doctrine\ORM\AbstractQuery;
 
 /**

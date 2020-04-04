@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Validation;
+namespace DrkDD\Pflegefinder\Validation;
 
-use App\Entity\PostalCode;
+use DrkDD\Pflegefinder\Entity\PostalCode;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
  * Class ExistingPostalCodeValidator
- * @package App\Validation
+ * @package DrkDD\Pflegefinder\Validation
  */
 class ExistingPostalCodeValidator extends ConstraintValidator
 {

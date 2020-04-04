@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\Type;
+namespace DrkDD\Pflegefinder\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Class UserType
- * @package App\Form\Type
+ * @package DrkDD\Pflegefinder\Form\Type
  */
 class UserType extends AbstractType
 {

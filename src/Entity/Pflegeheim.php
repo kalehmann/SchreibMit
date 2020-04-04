@@ -1,16 +1,16 @@
 <?php
 
 
-namespace App\Entity;
+namespace DrkDD\Pflegefinder\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Pflegeheim
- * @package App\Entity
+ * @package DrkDD\Pflegefinder\Entity
  *
- * @ORM\Entity(repositoryClass="App\Repository\PflegeHeimRepository")
+ * @ORM\Entity(repositoryClass="DrkDD\Pflegefinder\Repository\PflegeHeimRepository")
  */
 class Pflegeheim
 {

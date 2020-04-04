@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Document;
+namespace DrkDD\Pflegefinder\Document;
 
-use App\Validation\ExistingPostalCode;
+use DrkDD\Pflegefinder\Validation\ExistingPostalCode;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class UserDocument
- * @package App\Document
+ * @package DrkDD\Pflegefinder\Document
  */
 class UserDocument
 {

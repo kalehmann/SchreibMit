@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Entity;
+namespace DrkDD\Pflegefinder\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class PostalCode
- * @package App\Entity
+ * @package DrkDD\Pflegefinder\Entity
  *
  * @ORM\Entity()
  */
