@@ -85,3 +85,8 @@ verwendet.
       docker-compose run php bash
       php bin/console drk:import PLZ.csv
       ```
+- einen Admin-Nutzer für das Backend erstellen
+    ```
+    docker-compose run php bash
+    php bin/console drk:create-admin
+    ```
