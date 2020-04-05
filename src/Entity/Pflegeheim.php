@@ -236,6 +236,14 @@ class Pflegeheim
         $this->users = $users;
     }
 
+    /**
+     * @return int
+     */
+    public function getVermittelteKontakte() : int
+    {
+        return count($this->users);
+    }
+
     public function __toString()
     {
         return $this->name;

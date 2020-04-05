@@ -12,6 +12,16 @@ easy_admin:
                     - { property: 'plainPassword' , type: 'password', type_options: {required: true}}
         Pflegeheim:
             class: DrkDD\Pflegefinder\Entity\Pflegeheim
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'city'
+                    - 'postalCode'
+                    - 'street'
+                    - 'contactPerson'
+                    - 'maxContacts'
+                    - 'vermittelteKontakte'
         User:
             class: DrkDD\Pflegefinder\Entity\User
             form:
