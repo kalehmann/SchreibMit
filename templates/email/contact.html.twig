@@ -1,9 +1,13 @@
-<h2>Hallo {{ user.name }},</h2>
-
-
-vielen Dank, dass du unsere App nutzt.
-Wir haben für dich folgendes Pflegeheim in deiner Nähe gefunden: <br />
-<br />
+<h3>Hallo {{ user.name }},</h3>
+<p>Wir freuen uns sehr, dass Du dich bei uns registriert hast und die Aktion "Schreib mit!" des Jugendrotkreuzes Sachsen unterstützt. Du leistest einen wichtigen Beitrag, um die aktuelle Situation für alle etwas erträglicher zu machen. Vielen Dank.</p>
+<p>Bitte adressiere deinen Brief an:</p>
+<p>
 {{ user.pflegeheim.name }}<br />
-{{ user.pflegeheim.postalCode }} {{ user.pflegeheim.city }}<br />
 {{ user.pflegeheim.street}}<br />
+{{ user.pflegeheim.postalCode }} {{ user.pflegeheim.city }}
+</p>
+<p>Besuche uns auch auf <a href="https://www.instagram.com/jrksachsen/">Instagram</a> und auf unserer <a href="https://jrksachsen.de/">Website</a>. Hier findest du eine Anregungen für deinen ersten Brief, eine Anleitung zum Adressieren und Absenden und eine Menge anderer spannender Themen.</p>
+<p>
+Viele Grüße,<br />
+dein Jugendrotkreuz Sachsen
+</p>
