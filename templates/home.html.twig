@@ -1,12 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    {{ form(userForm) }}
+{% block title %}Schreib mit!{% endblock %}
 
-    <footer>
-        <ul>
-            <li><a href="{{ path('legal_impressum') }}">Impressum</a></li>
-            <li><a href="{{ path('legal_gdpr') }}">Datenschutz</a></li>
-        </ul>
-    </footer>
+{% block main %}
+    {{ form(userForm) }}
 {% endblock %}

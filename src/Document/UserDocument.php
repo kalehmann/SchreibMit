@@ -13,19 +13,19 @@ class UserDocument
 {
     /**
      * @var string
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Der Name darf nciht leer sein")
      */
     public $name;
 
     /**
      * @var string
-     * @Assert\Email()
+     * @Assert\Email(message="Das ist keine valide E-mail-Adresse")
      */
     public $email;
 
     /**
      * @var string
-     * @Assert\Regex("/^\d{5}/")
+     * @Assert\Regex("/^\d{5}/", message="Das ist keine valide Postleitzahl")
      * @ExistingPostalCode()
      */
     public $postalCode;

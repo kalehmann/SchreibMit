@@ -98,6 +98,7 @@ class HomeController extends AbstractController
         );
 
         $this->mailer->send($message);
+        var_dump("MEssage sended");
     }
 
     protected function mapUserDocumentToUser(UserDocument $document): User

@@ -1,12 +1,198 @@
 <!DOCTYPE html>
+{% set currentPath = url(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params'), false) %}
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <link rel="canonical" href="{{ currentPath }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="/assets/favicon-16x16.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<header>
+    <a class="jrk-logo" href="/">
+        <img src="/assets/JRK-Logo-rgb.png" title="Jugenrotkreuz"/>
+    </a>
+</header>
+<main>
+    <h1>{{ block('title') }}</h1>
+    <div class="content-wrapper">
+        <aside>
+            <p>Beitrag teilen</p>
+            <ul>
+                <li>
+                    <a href="https://twitter.com/share?url={{ currentPath }}" target="_blank" class="aside-share-link"
+                       rel="nofollow" title="Bei Twitter teilen">
+                        <svg role="img" class="c-menu-share__icon   o-icon-button__icon"
+                             aria-label="Bei Twitter teilen">
+                            <symbol viewBox="0 0 32 32" id="sprite-twitter">
+                                <title>twitter</title>
+                                <path d="M31 6.697c-1.103.49-2.29.82-3.534.968a6.176 6.176 0 0 0 2.706-3.405 12.303 12.303 0 0 1-3.908 1.494 6.156 6.156 0 0 0-10.49 5.613A17.476 17.476 0 0 1 3.09 4.937a6.132 6.132 0 0 0-.832 3.094 6.152 6.152 0 0 0 2.737 5.124 6.13 6.13 0 0 1-2.787-.77v.08a6.16 6.16 0 0 0 4.937 6.033 6.206 6.206 0 0 1-2.78.104 6.16 6.16 0 0 0 5.748 4.276A12.34 12.34 0 0 1 2.47 25.51c-.497 0-.987-.028-1.47-.085a17.41 17.41 0 0 0 9.437 2.766c11.32 0 17.51-9.378 17.51-17.51 0-.268-.004-.534-.015-.8A12.492 12.492 0 0 0 31 6.698z"/>
+                            </symbol>
+                            <title class="h-sr-only">
+                                Bei Twitter teilen
+                            </title>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sprite-twitter">
+                            </use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ currentPath }}" target="_blank"
+                       class="aside-share-link" rel="nofollow" title="Bei Facebook teilen">
+                        <svg role="img" class="c-menu-share__icon   o-icon-button__icon"
+                             aria-label="Bei Facebook teilen">
+                            <symbol viewBox="0 0 32 32" id="sprite-facebook">
+                                <title>facebook</title>
+                                <path d="M12.816 31V17.315H8.21V11.98h4.606V8.05c0-4.565 2.788-7.05 6.86-7.05 1.95 0 3.625.146 4.114.212V5.98l-2.825.003c-2.213 0-2.643 1.052-2.643 2.597v3.402h5.282l-.688 5.334H18.32V31"/>
+                            </symbol>
+                            <title class="h-sr-only">
+                                Bei Facebook teilen
+                            </title>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sprite-facebook">
+                            </use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.xing.com/social_plugins/share?url={{ currentPath }}" target="_blank"
+                       class="aside-share-link" rel="nofollow" title="">
+                        <svg role="img" class="c-menu-share__icon o-icon-button__icon" aria-label="zum Xing-Profil">
+                            <symbol viewBox="0 0 32 32" id="sprite-xing">
+                                <title>xing</title>
+                                <path d="M11.6,12.8c0,0.3-1.7,3.2-4.9,9c-0.3,0.6-0.9,0.9-1.5,0.9H0.6c-0.3,0-0.6,0-0.6-0.3s0-0.6,0-0.6l4.9-8.7l0,0L1.7,7.3
+		C1.5,7,1.5,6.7,1.7,6.7c0-0.3,0.3-0.3,0.6-0.3H7c0.6,0,0.9,0.3,1.2,0.9L11.6,12.8z M27.3,0.3c0,0.3,0,0.6,0,0.6L17.2,19.2l0,0
+		l6.7,11.9c0,0.3,0.3,0.6,0,0.6c0,0.3-0.3,0.3-0.6,0.3h-4.9c-0.6,0-0.9-0.3-1.2-0.9l-6.7-11.9c0.3-0.3,3.8-6.4,10.5-18.3
+		C21.2,0.3,21.5,0,22.1,0h4.7C27.1,0,27.3,0,27.3,0.3z"/>
+                            </symbol>
+                            <title class="h-sr-only">
+                                zum Xing-Profil
+                            </title>
+
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sprite-xing">
+                            </use>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <article>
+            {% block main %}{% endblock %}
+        </article>
+    </div>
+</main>
+<footer>
+    <nav>
+        <ul>
+            <li>Externe Angebote</li>
+            <li>
+                <a href="https://drksachsen.de/angebote/kurse-im-ueberblick/kurse-fuer-familien/kurs-babysitterausbildung/"
+                   title="Babysitterausbildung">Babysitterausbildung</a></li>
+            <li><a href="https://drksachsen.de/mitmachen/freiwilligendienst/" title="Freiwilligendienste">Freiwilligendienste</a>
+            </li>
+        </ul>
+        <ul>
+            <li>Informationen</li>
+            <li><a href="https://jrksachsen.de/informationen/kontakt/" title="Kontakt" class="c-menu-footer__link">Kontakt</a>
+            </li>
+            <li><a href="https://jrksachsen.de/informationen/impressum/" title="Impressum"
+                >Impressum</a>
+            </li>
+            <li><a href="https://jrksachsen.de/informationen/datenschutz/"
+                   title="Datenschutz"
+                >Datenschutz</a>
+            </li>
+        </ul>
+        <ul>
+            <li>Aktuelles vom JRK</li>
+            <li><a href="https://jrksachsen.de/aktuelles/news/" title="Neuigkeiten"
+                >Neuigkeiten</a>
+            </li>
+            <li><a href="https://jrksachsen.de/service/broadcast/" title="Broadcast"
+                >Broadcast</a>
+            </li>
+        </ul>
+        <ul class="footer-social-media-list">
+            <li>Social Media-Kanäle</li>
+            <li>
+                <a href="https://de-de.facebook.com/jrksachsen/" target="_blank"
+                   title="">
+                    <svg role="img"
+                         aria-label="zum Facebook-Profil">
+                        <symbol viewBox="0 0 32 32" id="sprite-facebook">
+                            <title>facebook</title>
+                            <path d="M12.816 31V17.315H8.21V11.98h4.606V8.05c0-4.565 2.788-7.05 6.86-7.05 1.95 0 3.625.146 4.114.212V5.98l-2.825.003c-2.213 0-2.643 1.052-2.643 2.597v3.402h5.282l-.688 5.334H18.32V31"/>
+                        </symbol>
+                        <use xlink:href="#sprite-facebook"></use>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/jrksachsen/" target="_blank"
+                   title="">
+                    <svg role="img"
+                         aria-label="zum Instagram-Profil des DRK">
+                        <symbol viewBox="0 0 32 32" id="sprite-instagram">
+                            <title>instagram</title>
+                            <path d="M32,16c0,3.2,0,5.4-0.1,6.7c-0.1,2.9-1,5.1-2.6,6.7c-1.5,1.5-3.8,2.4-6.7,2.6C21.4,32,19.2,32,16,32s-5.4,0-6.7-0.1
+		c-2.9-0.1-5.1-1-6.7-2.6c-1.5-1.5-2.4-3.8-2.6-6.7C0,21.4,0,19.2,0,16s0-5.4,0.1-6.7c0.1-2.9,1-5.1,2.6-6.7s3.8-2.4,6.7-2.6
+		C10.6,0,12.8,0,16,0s5.4,0,6.7,0.1c2.9,0.1,5.1,1,6.7,2.6s2.4,3.8,2.6,6.7C32,10.6,32,12.8,32,16z M17.5,2.8c-1,0-1.5,0-1.5,0
+		s-0.6,0-1.5,0c-1,0-1.7,0-2.2,0c-0.5,0-1.2,0-2,0c-0.9,0-1.5,0.1-2.2,0.3S6.9,3.3,6.5,3.6C5.9,3.8,5.2,4.2,4.7,4.7S3.8,5.9,3.6,6.5
+		C3.3,6.9,3.2,7.4,3.1,8.1c0,0.6-0.1,1.3-0.1,2.2s0,1.5,0,2s0,1.3,0,2.2c0,1,0,1.5,0,1.5s0,0.6,0,1.5c0,1,0,1.7,0,2.2s0,1.2,0,2
+		c0,0.9,0.1,1.5,0.3,2.2c0.1,0.6,0.3,1,0.4,1.5c0.3,0.6,0.6,1.3,1.2,1.8s1.2,0.9,1.8,1.2c0.4,0.1,0.9,0.3,1.5,0.4
+		c0.6,0.1,1.3,0.1,2.2,0.3c0.9,0,1.5,0,2,0s1.3,0,2.2,0c1,0,1.5,0,1.5,0s0.6,0,1.5,0c1,0,1.7,0,2.2,0s1.2,0,2,0
+		c0.9,0,1.5-0.1,2.2-0.3c0.6-0.1,1-0.3,1.5-0.4c0.6-0.3,1.3-0.6,1.8-1.2s0.9-1.2,1.2-1.8c0.1-0.4,0.3-0.9,0.4-1.5
+		c0.1-0.6,0.1-1.3,0.3-2.2c0-0.9,0-1.5,0-2c0-0.5,0-1.3,0-2.2c0-1,0-1.5,0-1.5s0-0.6,0-1.5c0-1,0-1.7,0-2.2c0-0.5,0-1.2,0-2
+		c0-0.9-0.1-1.5-0.3-2.2c-0.1-0.6-0.3-1-0.4-1.5c-0.3-0.6-0.6-1.3-1.2-1.8s-1.2-0.9-1.8-1.2c-0.4-0.1-0.9-0.3-1.5-0.4
+		s-1.3-0.1-2.2-0.3c-0.9,0-1.5,0-2,0C19.3,2.8,18.6,2.8,17.5,2.8z M21.8,10.2c1.5,1.5,2.4,3.6,2.4,5.8s-0.8,4.2-2.4,5.8
+		c-1.5,1.5-3.6,2.4-5.8,2.4c-2.3,0-4.2-0.8-5.8-2.4c-1.5-1.5-2.4-3.6-2.4-5.8s0.8-4.2,2.4-5.8c1.5-1.5,3.6-2.4,5.8-2.4
+		C18.3,7.8,20.2,8.6,21.8,10.2z M19.7,19.7c1-1,1.5-2.3,1.5-3.7s-0.5-2.7-1.5-3.7s-2.3-1.5-3.7-1.5c-1.5,0-2.7,0.5-3.7,1.5
+		s-1.5,2.3-1.5,3.7s0.5,2.7,1.5,3.7c1,1,2.3,1.5,3.7,1.5C17.5,21.4,18.7,20.9,19.7,19.7z M25.9,6.1c0.4,0.4,0.5,0.8,0.5,1.4
+		c0,0.5-0.1,1-0.5,1.4s-0.8,0.5-1.4,0.5c-0.5,0-1-0.1-1.4-0.5s-0.5-0.8-0.5-1.4c0-0.5,0.1-1,0.5-1.4c0.4-0.4,0.8-0.5,1.4-0.5
+		C25.1,5.5,25.5,5.8,25.9,6.1z"/>
+                        </symbol>
+                        <use xlink:href="#sprite-instagram"></use>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/Deutsches_JRK/" target="_blank"
+                   title="">
+                    <svg role="img"
+                         aria-label="zum Twitter-Profil Deutsches Rotes Kreuz">
+                        <symbol viewBox="0 0 32 32" id="sprite-twitter">
+                            <title>twitter</title>
+                            <path d="M31 6.697c-1.103.49-2.29.82-3.534.968a6.176 6.176 0 0 0 2.706-3.405 12.303 12.303 0 0 1-3.908 1.494 6.156 6.156 0 0 0-10.49 5.613A17.476 17.476 0 0 1 3.09 4.937a6.132 6.132 0 0 0-.832 3.094 6.152 6.152 0 0 0 2.737 5.124 6.13 6.13 0 0 1-2.787-.77v.08a6.16 6.16 0 0 0 4.937 6.033 6.206 6.206 0 0 1-2.78.104 6.16 6.16 0 0 0 5.748 4.276A12.34 12.34 0 0 1 2.47 25.51c-.497 0-.987-.028-1.47-.085a17.41 17.41 0 0 0 9.437 2.766c11.32 0 17.51-9.378 17.51-17.51 0-.268-.004-.534-.015-.8A12.492 12.492 0 0 0 31 6.698z"/>
+                        </symbol>
+                        <use xlink:href="#sprite-twitter"></use>
+                    </svg>
+                </a>
+            </li>
+            <li>
+            <a href="https://www.youtube.com/user/JugendrotkreuzOnline/" class="c-menu-social__link"
+               target="_blank" title="">
+                <svg role="img"
+                     aria-label="zum Youtube-Profil des DRK">
+                    <symbol viewBox="0 0 32 32" id="sprite-youtube">
+                        <title>youtube</title>
+                        <path d="M31.68 9.602s-.31-2.205-1.27-3.176c-1.217-1.274-2.582-1.28-3.207-1.355-4.478-.323-11.195-.323-11.195-.323h-.014s-6.717 0-11.195.324c-.627.075-1.99.08-3.208 1.356C.632 7.396.32 9.602.32 9.602S0 12.192 0 14.782v2.427c0 2.588.32 5.178.32 5.178s.31 2.205 1.27 3.177c1.218 1.274 2.817 1.233 3.53 1.367 2.56.246 10.88.322 10.88.322s6.725-.01 11.202-.334c.625-.075 1.99-.08 3.206-1.355.96-.972 1.272-3.177 1.272-3.177s.32-2.59.32-5.18v-2.427c0-2.59-.32-5.178-.32-5.178zM12.697 20.15v-8.99l8.645 4.51-8.644 4.48z"/>
+                    </symbol>
+                    <use xlink:href="#sprite-youtube"></use>
+                </svg>
+            </a>
+            </li>
+        </ul>
+    </nav>
+</footer>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
