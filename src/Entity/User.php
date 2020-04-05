@@ -58,10 +58,15 @@ class User
      */
     protected $pflegeheim;
 
+    public function __construct()
+    {
+        $this->registrationDate = new \DateTimeImmutable();
+    }
+
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -77,7 +82,7 @@ class User
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -93,7 +98,7 @@ class User
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -109,7 +114,7 @@ class User
     /**
      * @return PostalCode
      */
-    public function getPostalCode(): PostalCode
+    public function getPostalCode()
     {
         return $this->postalCode;
     }
@@ -128,6 +133,24 @@ class User
     public function getAge(): ?int
     {
         return $this->age;
+    }
+
+    public function getAltersGruppe(): string
+    {
+        switch ($this->age) {
+            case 0:
+                return '<6';
+            case 1:
+                return '6-12';
+            case 2:
+                return '13-16';
+            case 3:
+                return '17-27';
+            case 4:
+                return '>27';
+        }
+
+        return 'Unbekannt';
     }
 
     /**

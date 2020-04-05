@@ -55,7 +55,6 @@ class HomeController extends AbstractController
             $pflegeheim = $pflegeheimRepo->findNearestForPostalCode($user->getPostalCode());
 
             if ($pflegeheim) {
-                $user->setRegistrationDate(new \DateTimeImmutable());
                 $user->setPflegeheim($pflegeheim);
 
                 $this->sendContactMessage($user);

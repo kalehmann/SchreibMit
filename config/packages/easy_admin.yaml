@@ -14,3 +14,25 @@ easy_admin:
             class: DrkDD\Pflegefinder\Entity\Pflegeheim
         User:
             class: DrkDD\Pflegefinder\Entity\User
+            form:
+                fields:
+                    - 'name'
+                    - 'email'
+                    - 'postalCode'
+                    - property: 'age'
+                      label: 'Altersgruppe'
+                      type: choice
+                      type_options:
+                        choices:
+                            '<6': 0
+                            '6-12': 1
+                            '13-16': 2
+                            '17-27': 3
+                            '>27': 4
+                        placeholder: 'leer'
+            list:
+                fields:
+                    - 'name'
+                    - 'email'
+                    - 'postalCode'
+                    - 'altersGruppe'

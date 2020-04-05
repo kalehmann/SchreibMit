@@ -13,7 +13,7 @@ class UserDocument
 {
     /**
      * @var string
-     * @Assert\NotBlank(message="Der Name darf nciht leer sein")
+     * @Assert\NotBlank(message="Der Name darf nicht leer sein")
      */
     public $name;
 
@@ -25,13 +25,13 @@ class UserDocument
 
     /**
      * @var string
-     * @Assert\Regex("/^\d{5}/", message="Das ist keine valide Postleitzahl")
      * @ExistingPostalCode()
+     * @Assert\Regex(pattern="/^\d{5}/", htmlPattern="\d{5}", message="Das ist keine valide Postleitzahl")
      */
     public $postalCode;
 
     /**
-     * @var string|null
+     * @var int|null
      */
     public $age;
 }

@@ -16,15 +16,24 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $ages = [];
-        for ($i = 16; $i < 100; $i++) {
-            $ages[] = $i;
-        }
+        $ages = [
+            '<6' => 0,
+            '6-12' => 1,
+            '13-16' => 2,
+            '17-27' => 3,
+            '>27' => 4,
+        ];
 
         $builder
             ->add('name', TextType::class, ['label' => 'Name oder Synonym'])
             ->add('email', TextType::class, ['label' => 'E-Mail Adresse'])
-            ->add('postalCode', TextType::class, ['label' => 'Postleitzahl'])
+            ->add(
+                'postalCode',
+                TextType::class,
+                [
+                    'label' => 'Postleitzahl',
+                ]
+            )
             ->add(
                 'age',
                 ChoiceType::class,
@@ -35,6 +44,6 @@ class UserType extends AbstractType
                     'required' => false,
                 ]
             )
-        ->add('submit', SubmitType::class, ['label' => 'Abschicken']);
+            ->add('submit', SubmitType::class, ['label' => 'Abschicken']);
     }
 }
