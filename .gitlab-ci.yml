@@ -1,0 +1,17 @@
+image: php:7.4-cli
+
+before_script:
+  - 'apt-get update'
+  - 'apt-get upgrade -y'
+  - 'apt-get install --no-install-recommends -y unzip'
+  - 'php -r "copy(''https://getcomposer.org/installer'', ''composer-setup.php'');"'
+  - 'php composer-setup.php --filename=composer --install-dir=/usr/local/bin/'
+  - 'php -r "unlink(''composer-setup.php'');"'
+
+install:
+  script:
+    - composer install
+  artifacts:
+    paths:
+      - .
+    expire_in: 1 hour
