@@ -35,6 +35,6 @@ class UserType extends AbstractType
                     'required' => false,
                 ]
             )
-        ->add('submit', SubmitType::class, ['label' => 'Suchen']);
+        ->add('submit', SubmitType::class, ['label' => 'Abschicken']);
     }
 }
