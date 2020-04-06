@@ -1,13 +1,13 @@
 <?php
 
 
-namespace DrkDD\Pflegefinder\Entity;
+namespace DrkDD\SchreibMit\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class User
- * @package DrkDD\Pflegefinder\Entity
+ * @package DrkDD\SchreibMit\Entity
  * @ORM\Entity()
  */
 class User

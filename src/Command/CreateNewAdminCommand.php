@@ -1,11 +1,11 @@
 <?php
 
 
-namespace DrkDD\Pflegefinder\Command;
+namespace DrkDD\SchreibMit\Command;
 
 
 use Doctrine\ORM\EntityManagerInterface;
-use DrkDD\Pflegefinder\Entity\Admin;
+use DrkDD\SchreibMit\Entity\Admin;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

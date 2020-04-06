@@ -1,6 +1,6 @@
 <?php
 
-namespace DrkDD\Pflegefinder\Validation;
+namespace DrkDD\SchreibMit\Validation;
 
 
 use Symfony\Component\Validator\Constraint;

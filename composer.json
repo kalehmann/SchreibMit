@@ -49,12 +49,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DrkDD\\Pflegefinder\\": "src/"
+            "DrkDD\\SchreibMit\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DrkDD\\Pflegefinder\\Tests\\": "tests/"
+            "DrkDD\\SchreibMit\\Tests\\": "tests/"
         }
     },
     "replace": {

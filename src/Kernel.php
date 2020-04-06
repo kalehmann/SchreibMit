@@ -1,6 +1,6 @@
 <?php
 
-namespace DrkDD\Pflegefinder;
+namespace DrkDD\SchreibMit;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;

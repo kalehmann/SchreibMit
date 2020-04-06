@@ -1,14 +1,14 @@
 <?php
 
 
-namespace DrkDD\Pflegefinder\Controller;
+namespace DrkDD\SchreibMit\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class SecurityController
- * @package DrkDD\Pflegefinder\Controller
+ * @package DrkDD\SchreibMit\Controller
  */
 class SecurityController extends AbstractController
 {

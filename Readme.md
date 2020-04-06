@@ -108,7 +108,7 @@ verwendet.
    <?php
    
    
-   namespace DrkDD\Pflegefinder\Controller;
+   namespace DrkDD\SchreibMit\Controller;
    
    
    use Doctrine\ORM\EntityManagerInterface;

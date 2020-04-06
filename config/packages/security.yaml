@@ -1,11 +1,11 @@
 security:
     encoders:
-        DrkDD\Pflegefinder\Entity\Admin: bcrypt
+        DrkDD\SchreibMit\Entity\Admin: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         admins:
             entity:
-                class: 'DrkDD\Pflegefinder\Entity\Admin'
+                class: 'DrkDD\SchreibMit\Entity\Admin'
                 property: 'username'
         users_in_memory: { memory: null }
     firewalls:

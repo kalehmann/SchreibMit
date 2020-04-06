@@ -1,6 +1,6 @@
 <?php
 
-use DrkDD\Pflegefinder\Kernel;
+use DrkDD\SchreibMit\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 

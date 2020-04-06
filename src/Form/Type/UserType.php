@@ -1,6 +1,6 @@
 <?php
 
-namespace DrkDD\Pflegefinder\Form\Type;
+namespace DrkDD\SchreibMit\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Class UserType
- * @package DrkDD\Pflegefinder\Form\Type
+ * @package DrkDD\SchreibMit\Form\Type
  */
 class UserType extends AbstractType
 {
