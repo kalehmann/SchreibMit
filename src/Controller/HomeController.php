@@ -104,7 +104,7 @@ class HomeController extends AbstractController
      */
     protected function sendContactMessage(User $user): void
     {
-        $message = (new \Swift_Message('JRK Pflegefinder'))
+        $message = (new \Swift_Message('Schreib mit!'))
             ->setFrom(
                 $this->getParameter('senderMail')
             )
