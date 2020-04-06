@@ -141,3 +141,8 @@ verwendet.
    }
    ```
    anschließend ruft man einmal `/init` auf
+- Weiterleitung auf HTTPS erzwingen indem man den Block `<IfModule mod_rewrite.c>` um folgendes erweitert:
+   ```
+   RewriteCond %{SERVER_PORT} 80
+   RewriteRule ^(.*)$ https://schreibmit.drksachsen.de/$1 [R,L]
+   ```
