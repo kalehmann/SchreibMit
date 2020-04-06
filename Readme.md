@@ -1,4 +1,4 @@
-## PflegeFinder
+## SchreibMit!
 
 Die Anwendung soll es Menschen ermöglichen anhand ihrer Postleitzahl eine Pflegeeinrichtung in ihrer Nähe zu finden und
 sie zur Kontaktaufnahme zu der Einrichtung animieren.
