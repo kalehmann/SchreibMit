@@ -3,7 +3,28 @@
 {% block title %}Schreib mit!{% endblock %}
 
 {% block main %}
-    {{ form(userForm) }}
+    {{ form_start(userForm) }}
+        <div {% if userForm.name.vars.errors|length %}class="form-has-errors"{% endif %}>
+            {{ form_label(userForm.name) }}
+            {{ form_widget(userForm.name) }}
+            {{  form_errors(userForm.name) }}
+        </div>
+        <div {% if userForm.email.vars.errors|length %}class="form-has-errors"{% endif %}>
+            {{ form_label(userForm.email) }}
+            {{ form_widget(userForm.email) }}
+            {{ form_errors(userForm.email) }}
+        </div>
+        <div {% if userForm.postalCode.vars.errors|length %}class="form-has-errors"{% endif %}>
+            {{ form_label(userForm.postalCode) }}
+            {{ form_widget(userForm.postalCode) }}
+            {{ form_errors(userForm.postalCode) }}
+        </div>
+        <div {% if userForm.age.vars.errors|length %}class="form-has-errors"{% endif %}>
+            {{ form_label(userForm.age) }}
+            {{ form_widget(userForm.age) }}
+            {{ form_errors(userForm.age) }}
+        </div>
+    {{ form_end(userForm) }}
 
     <p>Anhand deiner Angaben können wir dir die Adresse einer Pflegeeinrichtung in deiner Nähe zusenden, an die du
         deinen Brief schreiben kannst. Mit der Angabe deines Alters ermöglichst du uns zu sehen, welche

@@ -54,7 +54,7 @@ aside > ul > li {
 body {
     color: #554f4a;
     font-size: 1rem;
-    font-family: HelveticaNeueLT,Open Sans,Arial,Helvetica,sans-serif;
+    font-family: HelveticaNeueLT, Open Sans, Arial, Helvetica, sans-serif;
     line-height: 1.5882352941;
     margin: 0;
 }
@@ -64,8 +64,17 @@ form {
     background: #ebf6f7;
 }
 
-form > div > div {
+form > div {
     margin-bottom: 2.3529411765rem;
+}
+
+.form-has-errors > input, .form-has-errors > select {
+    border-bottom: 1px solid #e60005;
+}
+
+.form-has-errors > ul {
+    color: #e60005;
+    text-align: right;
 }
 
 h1 {
@@ -127,7 +136,7 @@ select, input {
     width: 100%;
 }
 
-select  {
+select {
     padding: .375rem .75rem;
 }
 
