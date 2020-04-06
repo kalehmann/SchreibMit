@@ -135,7 +135,7 @@ class User
         return $this->age;
     }
 
-    public function getAltersGruppe(): string
+    public function getAltersgruppe(): string
     {
         switch ($this->age) {
             case 0:

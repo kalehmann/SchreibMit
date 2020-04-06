@@ -45,4 +45,4 @@ easy_admin:
                     - 'name'
                     - 'email'
                     - 'postalCode'
-                    - 'altersGruppe'
+                    - 'altersgruppe'
