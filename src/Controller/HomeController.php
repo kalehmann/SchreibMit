@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class HomeController
@@ -22,15 +23,22 @@ class HomeController extends AbstractController
      * @var EntityManagerInterface
      */
     protected $entityManager;
+
     /**
      * @var \Swift_Mailer
      */
     protected $mailer;
 
-    public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer)
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
         $this->entityManager = $em;
         $this->mailer = $mailer;
+        $this->translator = $translator;
     }
 
     /**
@@ -73,7 +81,7 @@ class HomeController extends AbstractController
         $userRepo = $this->entityManager->getRepository(User::class);
 
         if ($userRepo->findOneBy(['email' => $userDocument->email])) {
-            $this->addFlash('notice', 'Du hast mit dieser E-mail Adresse bereits teilgenommen');
+            $this->addFlash('notice', $this->translator->trans('flash_message.double_participation'));
 
             return false;
         }
@@ -83,7 +91,7 @@ class HomeController extends AbstractController
         $pflegeheim = $pflegeheimRepo->findNearestForPostalCode($user->getPostalCode());
 
         if (!$pflegeheim) {
-            $this->addFlash('notice', 'Wir haben leider kein Pflegeheim in deiner Nähe gefunden, bitte probiere es später nocheinmal');
+            $this->addFlash('notice', $this->translator->trans('flash_message.not_found'));
 
             return false;
         }
@@ -93,7 +101,7 @@ class HomeController extends AbstractController
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-        $this->addFlash('notice', 'Danke für deine Teilnahme, wir haben dir eine E-Mail mit weiteren Infos geschickt.');
+        $this->addFlash('notice', $this->translator->trans('flash_message.successful_participation'));
 
 
         return true;
@@ -104,7 +112,7 @@ class HomeController extends AbstractController
      */
     protected function sendContactMessage(User $user): void
     {
-        $message = (new \Swift_Message('Schreib mit!'))
+        $message = (new \Swift_Message($this->translator->trans('email.subject')))
             ->setFrom(
                 $this->getParameter('senderMail')
             )

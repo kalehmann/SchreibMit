@@ -14,7 +14,7 @@ class ExistingPostalCode extends Constraint
     /**
      * @var string
      */
-    public $message = "Die Postleitzahl wurde im System nicht gefunden";
+    public $message = 'postal_code.not_found';
 
     /**
      * @return array|string

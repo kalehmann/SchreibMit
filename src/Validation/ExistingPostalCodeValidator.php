@@ -6,6 +6,7 @@ use DrkDD\SchreibMit\Entity\PostalCode;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ExistingPostalCodeValidator
@@ -18,9 +19,15 @@ class ExistingPostalCodeValidator extends ConstraintValidator
      */
     protected $entityManager;
 
-    public function __construct(EntityManagerInterface $em)
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
     {
         $this->entityManager = $em;
+        $this->translator = $translator;
     }
 
     /**

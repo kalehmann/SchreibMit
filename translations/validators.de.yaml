@@ -1,0 +1,10 @@
+user:
+  email:
+    not_valid: 'Das ist keine valide E-Mail-Adresse'
+  name:
+    not_empty: 'Der Name darf nicht leer sein'
+  postal_code:
+    not_valid: 'Das ist keine valide Postleitzahl'
+
+postal_code:
+  not_found: 'Die Postleitzahl wurde im System nicht gefunden'

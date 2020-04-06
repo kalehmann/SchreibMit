@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class UserType
@@ -14,36 +15,37 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 class UserType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $ages = [
-            '<6' => 0,
-            '6-12' => 1,
-            '13-16' => 2,
-            '17-27' => 3,
-            '>27' => 4,
+            'form.user.age.group.below_six' => 0,
+            'form.user.age.group.six_to_twelve' => 1,
+            'form.user.age.group.thirteen_to_sixteen' => 2,
+            'form.user.age.group.seventeen_to_twentyseven' => 3,
+            'form.user.age.group.above_twentyseven' => 4,
         ];
 
         $builder
-            ->add('name', TextType::class, ['label' => 'Name oder Synonym'])
-            ->add('email', TextType::class, ['label' => 'E-Mail Adresse'])
+            ->add('name', TextType::class, ['label' => 'form.user.name'])
+            ->add('email', TextType::class, ['label' => 'form.user.email'])
             ->add(
                 'postalCode',
                 TextType::class,
                 [
-                    'label' => 'Postleitzahl',
+                    'label' => 'form.user.postal_code',
                 ]
             )
             ->add(
                 'age',
                 ChoiceType::class,
                 [
-                    'label' => 'Alter (optional)',
+                    'label' => 'form.user.age.label',
                     'choices' => $ages,
-                    'placeholder' => 'leer',
+                    'placeholder' => 'form.user.age.placeholder',
                     'required' => false,
                 ]
             )
-            ->add('submit', SubmitType::class, ['label' => 'Abschicken']);
+            ->add('submit', SubmitType::class, ['label' => 'form.user.submit']);
     }
 }

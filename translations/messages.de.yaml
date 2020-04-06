@@ -1,0 +1,24 @@
+email:
+  subject: 'Schreibmit'
+
+flash_message:
+  double_participation: 'Du hast mit dieser E-mail Adresse bereits teilgenommen'
+  not_found: 'Wir haben leider kein Pflegeheim in deiner Nähe gefunden, bitte probiere es später nocheinmal'
+  successful_participation: 'Danke für deine Teilnahme, wir haben dir eine E-Mail mit weiteren Infos geschickt.'
+
+
+form:
+  user:
+    age:
+      group:
+        below_six: '<6'
+        six_to_twelve: '6-12'
+        thirteen_to_sixteen: '13-16'
+        seventeen_to_twentyseven: '17-27'
+        above_twentyseven: '>27'
+      label: 'Alter (optional)'
+      placeholder: 'leer'
+    email: 'E-Mail Adresse'
+    name: 'Name oder Synonym'
+    postal_code: 'Postleitzahl'
+    submit: 'Abschicken'
