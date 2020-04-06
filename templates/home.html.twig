@@ -3,6 +3,12 @@
 {% block title %}Schreib mit!{% endblock %}
 
 {% block main %}
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     {{ form_start(userForm) }}
         <div {% if userForm.name.vars.errors|length %}class="form-has-errors"{% endif %}>
             {{ form_label(userForm.name) }}

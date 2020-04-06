@@ -43,28 +43,16 @@ class HomeController extends AbstractController
     public function homeAction(Request $request): Response
     {
         /** @var PflegeHeimRepository $pflegeheimRepo */
-        $pflegeheimRepo = $this->entityManager->getRepository(Pflegeheim::class);
         $userDocument = new UserDocument();
 
         $userForm = $this->createForm(UserType::class, $userDocument);
         $userForm->handleRequest($request);
         if ($userForm->isSubmitted() && $userForm->isValid()) {
             $userDocument = $userForm->getData();
-            $user = $this->mapUserDocumentToUser($userDocument);
-            $pflegeheimRepo->findNearestForPostalCode($user->getPostalCode());
-            $pflegeheim = $pflegeheimRepo->findNearestForPostalCode($user->getPostalCode());
-
-            if ($pflegeheim) {
-                $user->setPflegeheim($pflegeheim);
-
-                $this->sendContactMessage($user);
-
-                $this->entityManager->persist($user);
-                $this->entityManager->flush();
+            if ($this->addUser($userDocument)) {
+                // Formular zurücksetzen
+                $userForm = $this->createForm(UserType::class, new UserDocument());
             }
-
-            // Formular zurücksetzen
-            $userForm = $this->createForm(UserType::class, new UserDocument());
         }
 
         return $this->render(
@@ -75,6 +63,45 @@ class HomeController extends AbstractController
         );
     }
 
+    /**
+     * @param UserDocument $userDocument
+     * @return bool
+     */
+    protected function addUser(UserDocument $userDocument): bool
+    {
+        $pflegeheimRepo = $this->entityManager->getRepository(Pflegeheim::class);
+        $userRepo = $this->entityManager->getRepository(User::class);
+
+        if ($userRepo->findOneBy(['email' => $userDocument->email])) {
+            $this->addFlash('notice', 'Du hast mit dieser E-mail Adresse bereits teilgenommen');
+
+            return false;
+        }
+
+        $user = $this->mapUserDocumentToUser($userDocument);
+        $pflegeheimRepo->findNearestForPostalCode($user->getPostalCode());
+        $pflegeheim = $pflegeheimRepo->findNearestForPostalCode($user->getPostalCode());
+
+        if (!$pflegeheim) {
+            $this->addFlash('notice', 'Wir haben leider kein Pflegeheim in deiner Nähe gefunden, bitte probiere es später nocheinmal');
+
+            return false;
+        }
+        $user->setPflegeheim($pflegeheim);
+
+        $this->sendContactMessage($user);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        $this->addFlash('notice', 'Danke für deine Teilnahme, wir haben dir eine E-Mail mit weiteren Infos geschickt.');
+
+
+        return true;
+    }
+
+    /**
+     * @param User $user
+     */
     protected function sendContactMessage(User $user): void
     {
         $message = (new \Swift_Message('JRK Pflegefinder'))
@@ -84,24 +111,26 @@ class HomeController extends AbstractController
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
-                // templates/emails/registration.html.twig
                     'email/contact.html.twig',
                     ['user' => $user]
                 ),
                 'text/html'
             )
-        ->addPart(
-            $this->renderView(
-            // templates/emails/registration.html.twig
-                'email/contact.txt.twig',
-                ['user' => $user]
-            ),
-            'text/plain'
-        );
+            ->addPart(
+                $this->renderView(
+                    'email/contact.txt.twig',
+                    ['user' => $user]
+                ),
+                'text/plain'
+            );
 
         $this->mailer->send($message);
     }
 
+    /**
+     * @param UserDocument $document
+     * @return User
+     */
     protected function mapUserDocumentToUser(UserDocument $document): User
     {
         $postalCodeRepo = $this->entityManager->getRepository(PostalCode::class);
@@ -111,6 +140,7 @@ class HomeController extends AbstractController
         $user->setEmail($document->email);
         $user->setAge($document->age);
 
+        /** @var PostalCode $postalCode */
         $postalCode = $postalCodeRepo->find($document->postalCode);
         $user->setPostalCode($postalCode);
 
