@@ -62,6 +62,9 @@ class HomeController extends AbstractController
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
             }
+
+            // Formular zurücksetzen
+            $userForm = $this->createForm(UserType::class, new UserDocument());
         }
 
         return $this->render(
