@@ -68,12 +68,8 @@ class Admin implements UserInterface
         $this->password = $password;
     }
 
-    /**
-     *
-     */
     public function eraseCredentials(): void
     {
-        $this->password = '';
     }
 
     public function getPlainPassword(): string
