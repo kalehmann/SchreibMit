@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 
 services:
   db:
@@ -17,11 +17,16 @@ services:
     ports:
       - '81:8025'
   php:
-    build: '.'
+    build: 'docker/php'
     depends_on:
       - 'db'
       - 'mail'
+      - 'www'
+    volumes:
+      - '.:/var/www'
+  www:
+    build: 'docker/www'
     ports:
       - '80:80'
     volumes:
-      - '.:/var/www/html'
+      - '.:/var/www'
