@@ -1,8 +1,9 @@
 <?php
-
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,19 +20,19 @@ class PostalCode
      * @ORM\Id()
      * @ORM\Column(name="postal_code", type="string", length=5)
      */
-    protected $postalCode;
+    protected $postalCode = '';
 
     /**
      * @var float
      * @ORM\Column(name="longitude", type="float")
      */
-    protected $longitude;
+    protected $longitude = 0.0;
 
     /**
      * @var float
      * @ORM\Column(name="latitude", type="float")
      */
-    protected $latitude;
+    protected $latitude = 0.0;
 
     /**
      * @var Collection|User[]
@@ -40,6 +41,16 @@ class PostalCode
     protected $users;
 
     /**
+     * PostalCode constructor.
+     */
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    /**
+     * Gibt die Postleitzahl zurück.
+     *
      * @return string
      */
     public function getPostalCode(): string
@@ -48,6 +59,8 @@ class PostalCode
     }
 
     /**
+     * Setzt die Postleitzahl.
+     *
      * @param string $postalCode
      */
     public function setPostalCode(string $postalCode): void
@@ -56,6 +69,8 @@ class PostalCode
     }
 
     /**
+     * Gibt den Längengrad des Postleitzahlenbereiches zurück.
+     *
      * @return float
      */
     public function getLongitude(): float
@@ -64,6 +79,8 @@ class PostalCode
     }
 
     /**
+     * Setzt den Längengrad des Postleitzahlenbereiches.
+     *
      * @param float $longitude
      */
     public function setLongitude(float $longitude): void
@@ -72,6 +89,8 @@ class PostalCode
     }
 
     /**
+     * Gibt den Breitengrad des Postleitzahlenbereiches zurück.
+     *
      * @return float
      */
     public function getLatitude(): float
@@ -80,6 +99,8 @@ class PostalCode
     }
 
     /**
+     * Setzt den Breitengrad des Postleitzahlenbereiches.
+     *
      * @param float $latitude
      */
     public function setLatitude(float $latitude): void
@@ -88,14 +109,18 @@ class PostalCode
     }
 
     /**
+     * Gibt alle Nutzer mit dieser Postleitzahl zurück.
+     *
      * @return User[]|Collection
      */
-    public function getUsers()
+    public function getUsers(): Collection
     {
         return $this->users;
     }
 
     /**
+     * Setzt die Nutzer mit dieser Postleitzahl.
+     *
      * @param User[]|Collection $users
      */
     public function setUsers($users): void
@@ -103,7 +128,7 @@ class PostalCode
         $this->users = $users;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->postalCode;
     }

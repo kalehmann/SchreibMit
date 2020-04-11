@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Entity;
-
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -19,33 +18,51 @@ class Admin implements UserInterface
      * @ORM\Id()
      * @ORM\Column(name="username", type="string", length=255, nullable=false, unique=true)
      */
-    protected $username;
+    protected $username = '';
 
     /**
      * @var string
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
-    protected $password;
+    protected $password = '';
 
-    public function getUsername()
+    /**
+     * Gibt den Nutzernamen des Admins zurück.
+     *
+     * @return string
+     */
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    public function setUsername(string $username)
+    /**
+     * Setzt den Nutzernamen des Admins.
+     *
+     * @param string $username
+     */
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
-    public function getSalt()
+    /**
+     * Diese Methode ist nur zur Erfüllung des UserInterfaces implementiert. Durch die Verwendung von bcrypt wird das
+     * Salt mit im Hash (Passwortfeld) gespeichert
+     *
+     * @return string
+     */
+    public function getSalt(): string
     {
         return '';
     }
 
     /**
+     * Gibt die Rollen des Admins zurück.
+     *
      * @return array|string[]
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return [
             'ROLE_ADMIN',
@@ -53,36 +70,56 @@ class Admin implements UserInterface
     }
 
     /**
+     * Gibt das mit bcrypt gehashte Paswort des Admins zurück.
+     *
      * @return string|null
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * @param string $password
+     * Setzt das Passwort des Admins.
+     *
+     * @param string $password der bcrypt Hash des Passwortes
      */
-    public function setPassword(string $password)
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
+    /**
+     * Nicht in Verwendung, nur zur Erfüllung des UserInterface implementiert.
+     */
     public function eraseCredentials(): void
     {
     }
 
+    /**
+     * Getter für das Klartextpasswort des Admins. Gibt immer einen leeren String zurück.
+     *
+     * @return string
+     */
     public function getPlainPassword(): string
     {
         return '';
     }
 
+    /**
+     * Hashed das Klartextpasswort mittels bcrypt und speichert es am Admin.
+     *
+     * @param string $plainPassword
+     */
     public function setPlainPassword(string $plainPassword): void
     {
         $this->password = password_hash($plainPassword, PASSWORD_BCRYPT);
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
         return $this->username;
     }
