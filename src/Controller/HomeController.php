@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Controller;
 
@@ -12,28 +13,30 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class HomeController
+ * @package DrkDD\SchreibMit\Controller
  */
 class HomeController extends AbstractController
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $entityManager;
 
-    /**
-     * @var \Swift_Mailer
-     */
+    /** @var \Swift_Mailer */
     protected $mailer;
 
-    /**
-     * @var TranslatorInterface
-     */
+    /** @var TranslatorInterface */
     protected $translator;
 
+    /**
+     * HomeController constructor.
+     * @param EntityManagerInterface $em
+     * @param \Swift_Mailer          $mailer
+     * @param TranslatorInterface    $translator
+     */
     public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
         $this->entityManager = $em;
@@ -42,7 +45,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @\Symfony\Component\Routing\Annotation\Route("/", name="home", methods={"GET", "POST"})
+     * @Route("/", name="home", methods={"GET", "POST"})
      *
      * @param Request $request
      *
@@ -72,6 +75,11 @@ class HomeController extends AbstractController
     }
 
     /**
+     * Erstellt aus einem UserDocument einen neuen Nutzer, weist ihm ein Pflegeheim zu und
+     * informiert ihn per E-Mail über die Zuweisung.
+     *
+     * Im Fehlerfall wird false zurúckgegeben und eine FlashMessage mit der Fehlerbeschreibung angelegt.
+     *
      * @param UserDocument $userDocument
      * @return bool
      */
@@ -103,11 +111,12 @@ class HomeController extends AbstractController
         $this->entityManager->flush();
         $this->addFlash('notice', $this->translator->trans('flash_message.successful_participation'));
 
-
         return true;
     }
 
     /**
+     * Sendet die E-Mail, welche den Nutzer über das ihm zugewiesene Pflegeheim informiert.
+     *
      * @param User $user
      */
     protected function sendContactMessage(User $user): void
@@ -136,6 +145,8 @@ class HomeController extends AbstractController
     }
 
     /**
+     * Mappt die Daten aus einem UserDocument auf die Entiät User
+     *
      * @param UserDocument $document
      * @return User
      */

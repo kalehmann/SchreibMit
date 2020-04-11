@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Controller;
 
@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/logout", name="backend_logout", methods={"GET"})
      */
-    public function logout()
+    public function logout(): void
     {
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
