@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Validation;
 
@@ -14,16 +15,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ExistingPostalCodeValidator extends ConstraintValidator
 {
-    /**
-     * @var EntityManagerInterface
-     */
+    /** @var EntityManagerInterface */
     protected $entityManager;
 
-    /**
-     * @var TranslatorInterface
-     */
+    /** @var TranslatorInterface */
     protected $translator;
 
+    /**
+     * ExistingPostalCodeValidator constructor.
+     * @param EntityManagerInterface $em
+     * @param TranslatorInterface    $translator
+     */
     public function __construct(EntityManagerInterface $em, TranslatorInterface $translator)
     {
         $this->entityManager = $em;
@@ -31,10 +33,10 @@ class ExistingPostalCodeValidator extends ConstraintValidator
     }
 
     /**
-     * @param string $postalCode
+     * @param string             $postalCode
      * @param ExistingPostalCode $constraint
      */
-    public function validate($postalCode, Constraint $constraint)
+    public function validate($postalCode, Constraint $constraint): void
     {
         $postalCodeRepo = $this->entityManager->getRepository(PostalCode::class);
         $postalCodeEntity = $postalCodeRepo->find($postalCode);

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Form\Type;
 
@@ -7,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class UserType
@@ -15,8 +15,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class UserType extends AbstractType
 {
-
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $ages = [
             'form.user.age.group.below_six' => 0,

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Repository;
 
@@ -10,10 +11,13 @@ use DrkDD\SchreibMit\Entity\User;
 
 /**
  * Class PflegeHeimRepository
+ * @package DrkDD\SchreibMit\Repository
  */
 class PflegeHeimRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
+     * Findet das geografisch am nähsten liegende Pflegeheim für eine Postleitzahl, welches noch frei Kapazitäten hat.
+     *
      * @param PostalCode $postalCode
      * @return Pflegeheim|null
      */
@@ -21,17 +25,41 @@ class PflegeHeimRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        // Der Abstand zwischen zwei Längengrade beträgt in Sachsen ca 70 Kilometer
-
         $res = $qb->select(
             'p AS ph',
-            'SQRT( ((p.latitude - :postal_lat) * (p.latitude - :postal_lat) * 111.3 * 111.3) + ((p.longitude - :postal_lon) * (p.longitude - :postal_lon) * 70 * 70) ) AS dist'
+            $qb->expr()->sqrt(
+                $qb->expr()->sum(
+                    $qb->expr()->prod(
+                        $qb->expr()->prod(
+                            $qb->expr()->diff('p.latitude', ':postal_lat'),
+                            $qb->expr()->diff('p.latitude', ':postal_lat')
+                        ),
+                        $qb->expr()->prod(
+                            ':latitude_offset',
+                            ':latitude_offset'
+                        )
+                    ),
+                    $qb->expr()->prod(
+                        $qb->expr()->prod(
+                            $qb->expr()->diff('p.longitude', ':postal_lon'),
+                            $qb->expr()->diff('p.longitude', ':postal_lon')
+                        ),
+                        $qb->expr()->prod(
+                            ':longitude_offset',
+                            ':longitude_offset'
+                        )
+                    )
+                )
+            ) . ' AS dist'
         )
             ->addSelect()
             ->from(Pflegeheim::class, 'p')
             ->leftJoin(User::class, 'u', Join::WITH, $qb->expr()->eq('p.id', 'u.pflegeheim'))
             ->groupBy('p.id')
             ->having($qb->expr()->lt($qb->expr()->count('u.id'), 'p.maxContacts'))
+            ->setParameter('latitude_offset', 111.3)
+            // Der Abstand zwischen zwei Längengraden beträgt in Sachsen ca 70 Kilometer
+            ->setParameter('longitude_offset', 70)
             ->setParameter('postal_lat', $postalCode->getLatitude())
             ->setParameter('postal_lon', $postalCode->getLongitude())
             ->orderBy('dist')
