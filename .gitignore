@@ -48,3 +48,7 @@
 /.web-server-pid
 
 PLZ.csv
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

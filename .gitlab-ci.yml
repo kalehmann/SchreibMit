@@ -7,11 +7,21 @@ before_script:
   - 'php -r "copy(''https://getcomposer.org/installer'', ''composer-setup.php'');"'
   - 'php composer-setup.php --filename=composer --install-dir=/usr/local/bin/'
   - 'php -r "unlink(''composer-setup.php'');"'
+  - 'docker-php-ext-install mysqli pdo pdo_mysql'
 
-install:
+services:
+  - name: 'mariadb:latest'
+    alias: 'db'
+
+tests:
   script:
-    - composer install
-  artifacts:
-    paths:
-      - .
-    expire_in: 1 hour
+    - 'composer install'
+    - 'php bin/console doctrine:schema:create'
+    - 'vendor/bin/codecept run'
+
+variables:
+  MYSQL_ROOT_PASSWORD: 'yahJieNoip1geihu'
+  MYSQL_DATABASE: 'drk'
+  MYSQL_USER: 'drk'
+  MYSQL_PASSWORD: 'aiZie9eereek2que'
+  SYMFONY_DEPRECATIONS_HELPER: 999
