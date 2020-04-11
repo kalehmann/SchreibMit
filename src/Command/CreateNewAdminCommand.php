@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace DrkDD\SchreibMit\Command;
-
 
 use Doctrine\ORM\EntityManagerInterface;
 use DrkDD\SchreibMit\Entity\Admin;
@@ -10,36 +9,68 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Kommando zum Anlegen eines administrativen Nutzers für das Backend
+ *
+ * Class CreateNewAdminCommand
+ * @package DrkDD\SchreibMit\Command
+ */
 class CreateNewAdminCommand extends Command
 {
     protected static $defaultName = 'drk:create-admin';
 
     /** @var EntityManagerInterface */
     protected $entityManager;
+    /** @var TranslatorInterface */
+    protected $translator;
 
-    public function __construct(EntityManagerInterface $em, $name = null)
+    /**
+     * CreateNewAdminCommand constructor.
+     * @param EntityManagerInterface $em
+     * @param TranslatorInterface    $translator
+     * @param null|string            $name
+     */
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $translator, $name = null)
     {
-        parent::__construct($name);
-
         $this->entityManager = $em;
+        $this->translator = $translator;
+
+        parent::__construct($name);
     }
 
-    protected function configure()
+    /**
+     *
+     */
+    protected function configure(): void
     {
         $this
-            ->setDescription('Create an Admin user for the backend')
-            ->setHelp('Create an Admin user for the backend');
+            ->setDescription(
+                $this->translator->trans('command.create_admin.description')
+            )
+            ->setHelp(
+                $this->translator->trans('command.create_admin.help')
+            );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
 
-        $nameQuestion = new Question('Name of the admin? : ');
+        $nameQuestion = new Question(
+            $this->translator->trans('command.create_admin.question_name')
+        );
         $username = $helper->ask($input, $output, $nameQuestion);
 
-        $passwordQuestion = new Question('Password : ');
+        $passwordQuestion = new Question(
+            $this->translator->trans('command.create_admin.question_password')
+        );
         $passwordQuestion->setHidden(true);
         $passwordQuestion->setHiddenFallback(false);
 
@@ -52,7 +83,9 @@ class CreateNewAdminCommand extends Command
         $this->entityManager->persist($admin);
         $this->entityManager->flush();
 
-        $output->writeln('Admin created');
+        $output->writeln(
+            $this->translator->trans('command.create_admin.success')
+        );
 
         return 0;
     }

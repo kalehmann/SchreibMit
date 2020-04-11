@@ -1,3 +1,16 @@
+command:
+  create_admin:
+    description: 'Erstellt einen administrativen Nutzer für das Backend'
+    help: 'Erstellt einen administrativen Nutzer für das Backend'
+    question_name: 'Nutzername des Administrators? : '
+    question_password: 'Passwort des Administrators? : '
+    success: 'Administrator erfolgreich erstellt.'
+  import_postal:
+    argument_file: 'CSV-Datei'
+    description: 'Importiert eine CSV Datei mit Postleitzahlen'
+    help: 'Importiert die Postleitzahlen-Geodatenbank von Launix im CSV-Format.'
+    success: ' Postleitzahlen importiert'
+
 email:
   subject: 'Schreibmit'
 
@@ -5,7 +18,6 @@ flash_message:
   double_participation: 'Du hast mit dieser E-mail Adresse bereits teilgenommen'
   not_found: 'Wir haben leider kein Pflegeheim in deiner Nähe gefunden, bitte probiere es später nocheinmal'
   successful_participation: 'Danke für deine Teilnahme, wir haben dir eine E-Mail mit weiteren Infos geschickt.'
-
 
 form:
   user:
